@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdqkuoyo6sakm"]
+
+[ext_resource type="Script" path="res://Control.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27jsd"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = -17.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="json_input" type="TextEdit" parent="vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "[{\"id\": \"asdasd\", \"name\": \"dog\"}, {\"id\": \"dasdas\", \"name\": \"cat\"}]"
+placeholder_text = "Paste your JSON here"
+caret_blink = true
+
+[node name="hbox" type="HBoxContainer" parent="vbox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Button2" type="Button" parent="vbox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 2
+focus_mode = 0
+text = "Open Files Folder"
+
+[node name="source_input" type="VBoxContainer" parent="vbox/hbox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="vbox/hbox/source_input"]
+layout_mode = 2
+text = "source key"
+
+[node name="source_line" type="LineEdit" parent="vbox/hbox/source_input"]
+layout_mode = 2
+text = "id"
+caret_blink = true
+
+[node name="end_input" type="VBoxContainer" parent="vbox/hbox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="vbox/hbox/end_input"]
+layout_mode = 2
+text = "end key"
+
+[node name="end_line" type="LineEdit" parent="vbox/hbox/end_input"]
+layout_mode = 2
+text = "name"
+caret_blink = true
+
+[node name="Button" type="Button" parent="vbox/hbox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "Go"
+
+[node name="console" type="RichTextLabel" parent="vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_27jsd")
+bbcode_enabled = true
+scroll_following = true
+
+[node name="ProgressBar" type="ProgressBar" parent="vbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="hbox2" type="HBoxContainer" parent="vbox"]
+layout_mode = 2
+
+[node name="LinkButton" type="LinkButton" parent="vbox/hbox2"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "User Guide"
+
+[connection signal="text_changed" from="vbox/json_input" to="." method="_on_json_input_text_changed"]
+[connection signal="pressed" from="vbox/hbox/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="text_changed" from="vbox/hbox/source_input/source_line" to="." method="_on_source_line_text_changed"]
+[connection signal="text_changed" from="vbox/hbox/end_input/end_line" to="." method="_on_end_line_text_changed"]
+[connection signal="pressed" from="vbox/hbox/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="vbox/hbox2/LinkButton" to="." method="_on_LinkButton_pressed"]
